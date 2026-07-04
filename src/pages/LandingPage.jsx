@@ -56,7 +56,7 @@ const LOGIN_FEATURES = [
 
 export default function LandingPage() {
   return (
-    <div className="min-h-screen bg-[#030c0a] text-white overflow-hidden relative flex flex-col font-sans">
+    <div className="min-h-screen bg-[#030c0a] text-white overflow-hidden relative flex flex-col font-sans landing-page-container">
       {/* Background decorations */}
       <div className="glow-spot-teal top-[-10%] left-[-10%] animate-mesh-1" />
       <div className="glow-spot-emerald bottom-[-10%] right-[-10%] animate-mesh-2" />

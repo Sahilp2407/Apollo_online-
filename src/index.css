@@ -479,4 +479,13 @@ h1, h2, h3, h4, h5, h6 {
   pointer-events: none;
 }
 
+/* Force headings inside landing-page-container to use white color */
+.landing-page-container h1,
+.landing-page-container h2,
+.landing-page-container h3,
+.landing-page-container h4 {
+  color: #ffffff !important;
+}
+
+
 
