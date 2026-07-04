@@ -1,6 +1,18 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { CheckCircle, Zap, Bell, Users, ArrowRight } from 'lucide-react';
+import { motion } from 'framer-motion';
+import { 
+  Zap, 
+  Bell, 
+  Users, 
+  CheckCircle, 
+  MessageSquare, 
+  TrendingUp, 
+  Clock, 
+  Sparkles, 
+  Activity, 
+  ChevronRight 
+} from 'lucide-react';
 
 const FEATURES = [
   { icon: Zap, label: "Instant booking" },
@@ -10,212 +22,319 @@ const FEATURES = [
 ];
 
 const STATS = [
-  { value: '2.4k+', label: 'Appointments' },
-  { value: '94%', label: 'Show rate' },
-  { value: '25+', label: 'Specialists' },
+  { value: '2.4k+', label: 'Appointments', trend: '+18% This Month' },
+  { value: '94%', label: 'Show Rate', trend: '+4.2% AI Lift' },
+  { value: '25+', label: 'Specialists', trend: 'Across 8 Depts' },
+];
+
+const LOGIN_FEATURES = [
+  { 
+    icon: Sparkles, 
+    title: 'AI Scheduling', 
+    sub: 'Smart slot suggestions based on patient show-risk.',
+    color: 'text-[#00D4AA]'
+  },
+  { 
+    icon: MessageSquare, 
+    title: 'WhatsApp Alerts', 
+    sub: 'Personalised reminder sequences with instant RSVP.',
+    color: 'text-[#6EE7B7]'
+  },
+  { 
+    icon: Activity, 
+    title: 'Live Analytics', 
+    sub: 'Real-time dashboard monitoring clinic efficiency.',
+    color: 'text-[#00D4AA]'
+  },
+  { 
+    icon: Clock, 
+    title: 'Slot Recovery', 
+    sub: 'Instantly backfill cancelled slots from waitlists.',
+    color: 'text-[#6EE7B7]'
+  },
 ];
 
 export default function LandingPage() {
   return (
-    <div
-      className="h-screen flex overflow-hidden"
-      style={{ fontFamily: "'Plus Jakarta Sans', sans-serif" }}
-    >
-      {/* ── LEFT — Hero Panel ── */}
-      <div
-        className="hidden lg:flex flex-col flex-1 relative overflow-hidden"
-        style={{ background: 'linear-gradient(145deg, #1b504c 0%, #0d2e2b 55%, #081c1a 100%)' }}
-      >
-        {/* Background decoration */}
-        <div
-          className="absolute top-0 right-0 w-[500px] h-[500px] rounded-full opacity-[0.07]"
-          style={{ background: 'radial-gradient(circle, #5eead4, transparent)', transform: 'translate(30%, -30%)' }}
-        />
-        <div
-          className="absolute bottom-0 left-0 w-[400px] h-[400px] rounded-full opacity-[0.06]"
-          style={{ background: 'radial-gradient(circle, #34d399, transparent)', transform: 'translate(-40%, 40%)' }}
-        />
-        {/* Grid pattern overlay */}
-        <div
-          className="absolute inset-0 opacity-[0.03]"
-          style={{
-            backgroundImage: 'linear-gradient(rgba(255,255,255,0.3) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.3) 1px, transparent 1px)',
-            backgroundSize: '40px 40px'
-          }}
-        />
+    <div className="min-h-screen bg-[#030c0a] text-white overflow-hidden relative flex flex-col font-sans">
+      {/* Background decorations */}
+      <div className="glow-spot-teal top-[-10%] left-[-10%] animate-mesh-1" />
+      <div className="glow-spot-emerald bottom-[-10%] right-[-10%] animate-mesh-2" />
+      <div className="glow-spot-teal top-[35%] right-[15%] w-[400px] h-[400px] opacity-40 animate-pulse-slow" />
+      
+      {/* Grid pattern overlay */}
+      <div className="absolute inset-0 bg-[linear-gradient(to_right,#0c2520_1px,transparent_1px),linear-gradient(to_bottom,#0c2520_1px,transparent_1px)] bg-[size:4rem_4rem] opacity-35 [mask-image:radial-gradient(ellipse_60%_50%_at_50%_40%,#000_80%,transparent_100%)] pointer-events-none z-0" />
 
-        {/* Top bar */}
-        <div className="relative z-10 flex items-center gap-3 px-12 pt-10">
-          <div className="w-9 h-9 rounded-xl bg-white/10 border border-white/20 flex items-center justify-center backdrop-blur-sm">
-            <span className="text-white font-bold text-sm" style={{ fontFamily: "'Space Grotesk', sans-serif" }}>A</span>
+      {/* Header */}
+      <header className="relative z-50 w-full max-w-7xl mx-auto px-6 py-6 flex items-center justify-between">
+        <div className="flex items-center gap-3">
+          <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-[#0F766E] to-[#00D4AA] p-[1.5px] shadow-[0_4px_12px_rgba(0,212,170,0.2)]">
+            <div className="w-full h-full rounded-[10px] bg-[#030c0a] flex items-center justify-center">
+              <span className="text-white font-extrabold text-sm" style={{ fontFamily: "'Space Grotesk', sans-serif" }}>A</span>
+            </div>
           </div>
-          <span className="text-white/80 font-semibold text-[15px] tracking-tight" style={{ fontFamily: "'Space Grotesk', sans-serif" }}>
+          <span className="text-white font-bold text-base tracking-tight" style={{ fontFamily: "'Space Grotesk', sans-serif" }}>
             Apollo OPD Intelligence
           </span>
         </div>
 
-        {/* Center content */}
-        <div className="relative z-10 flex-1 flex flex-col justify-center px-12 pb-16">
-          {/* Badge */}
-          <div className="inline-flex items-center gap-2 bg-white/10 border border-white/20 rounded-full px-4 py-1.5 mb-8 w-fit backdrop-blur-sm">
-            <span className="w-1.5 h-1.5 rounded-full bg-emerald-400" style={{ boxShadow: '0 0 6px #34d399' }} />
-            <span className="text-white/75 text-xs font-medium tracking-wide">Demo Day 2026 · Apollo Hospitals</span>
-          </div>
+        <div className="flex items-center gap-2 bg-[#0d2a25]/40 border border-emerald-950 px-3 py-1 rounded-full text-[11px] text-emerald-400 font-semibold backdrop-blur-sm shadow-inner">
+          <span className="relative flex h-2 w-2">
+            <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+            <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
+          </span>
+          <span>Demo Day 2026</span>
+        </div>
+      </header>
 
-          {/* Headline */}
-          <h1
-            className="text-[52px] font-bold leading-[1.1] text-white mb-6 tracking-tight"
+      {/* Hero Section */}
+      <main className="relative z-10 w-full max-w-7xl mx-auto px-6 grid lg:grid-cols-12 gap-12 lg:gap-8 items-center flex-1 py-10">
+        
+        {/* Left Column - Headline & Stats */}
+        <div className="lg:col-span-7 flex flex-col justify-center text-left">
+          <motion.div 
+            initial={{ opacity: 0, y: -20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5 }}
+            className="inline-flex items-center gap-2 bg-emerald-950/40 border border-emerald-900/30 rounded-full px-3 py-1.5 mb-6 w-fit backdrop-blur-md"
+          >
+            <Sparkles size={13} className="text-[#00D4AA]" />
+            <span className="text-[#6EE7B7] text-[11px] font-bold tracking-wide uppercase">AI-Powered OPD Optimization</span>
+          </motion.div>
+
+          <motion.h1
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 0.1 }}
+            className="text-[44px] md:text-[60px] lg:text-[68px] font-extrabold leading-[1.05] tracking-tight mb-5"
             style={{ fontFamily: "'Space Grotesk', sans-serif" }}
           >
-            Smarter OPD,
-            <br />
-            <span style={{ color: '#6ee7b7' }}>Better Care</span>
-          </h1>
+            Smarter OPD.<br />
+            <span className="text-gradient">Better Care.</span>
+          </motion.h1>
 
-          <p className="text-white/55 text-[17px] leading-relaxed max-w-[420px] mb-10">
-            AI-powered appointment intelligence for Apollo Hospitals — reducing no-shows, personalising reminders, and making every visit count.
-          </p>
+          <motion.p
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 0.2 }}
+            className="text-zinc-400 text-base md:text-lg leading-relaxed max-w-xl mb-8"
+          >
+            An AI-powered appointment management platform for Apollo Hospitals that reduces patient no-shows using AI reminders, smart scheduling, analytics, and WhatsApp notifications.
+          </motion.p>
 
           {/* Feature chips */}
-          <div className="flex flex-wrap gap-2.5">
+          <motion.div 
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.5, delay: 0.25 }}
+            className="flex flex-wrap gap-2.5 mb-10"
+          >
             {FEATURES.map(({ icon: Icon, label }) => (
               <div
                 key={label}
-                className="flex items-center gap-2 bg-white/8 border border-white/12 rounded-full px-4 py-2 text-white/70 text-[13px] backdrop-blur-sm"
+                className="flex items-center gap-2 bg-[#0d2a25]/40 border border-emerald-900/20 hover:border-emerald-800/40 rounded-full px-3.5 py-1.5 text-zinc-300 text-[12px] backdrop-blur-sm transition-colors cursor-default"
               >
-                <Icon size={13} style={{ color: '#6ee7b7' }} />
+                <Icon size={12} className="text-[#6EE7B7]" />
                 <span>{label}</span>
               </div>
             ))}
-          </div>
+          </motion.div>
 
           {/* Stat cards row */}
-          <div className="flex items-stretch gap-4 mt-12">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 0.3 }}
+            className="grid grid-cols-3 gap-4"
+          >
             {STATS.map((s, i) => (
               <div
                 key={s.label}
-                className="flex-1 bg-white/6 border border-white/10 rounded-2xl px-5 py-4 backdrop-blur-sm"
+                className="glass-card-dark p-5 rounded-2xl flex flex-col justify-between group cursor-pointer relative overflow-hidden"
               >
-                <p
-                  className="text-[26px] font-bold text-white"
-                  style={{ fontFamily: "'Space Grotesk', sans-serif" }}
-                >
-                  {s.value}
-                </p>
-                <p className="text-white/45 text-[12px] mt-0.5">{s.label}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-
-        {/* Bottom tagline */}
-        <p className="relative z-10 px-12 pb-8 text-white/20 text-xs">
-          Apollo Hospitals · Jubilee Hills, Hyderabad
-        </p>
-      </div>
-
-      {/* ── RIGHT — Login Panel ── */}
-      <div className="flex flex-col w-full lg:w-[480px] xl:w-[520px] bg-white overflow-y-auto">
-        {/* Mobile header */}
-        <div className="lg:hidden flex items-center gap-2.5 px-8 pt-8 pb-4">
-          <div className="w-9 h-9 rounded-xl bg-[#1b504c] flex items-center justify-center">
-            <span className="text-white font-bold text-sm">A</span>
-          </div>
-          <span className="text-[#1b504c] font-semibold text-base" style={{ fontFamily: "'Space Grotesk', sans-serif" }}>
-            Apollo OPD Intelligence
-          </span>
-        </div>
-
-        {/* Centered login content */}
-        <div className="flex-1 flex flex-col justify-center px-10 xl:px-14 py-10">
-          {/* Avatar placeholder */}
-          <div className="w-14 h-14 rounded-2xl bg-[#e5f9f8] flex items-center justify-center mb-8">
-            <div className="w-8 h-8 rounded-full bg-[#1b504c] flex items-center justify-center">
-              <span className="text-white font-bold text-sm">A</span>
-            </div>
-          </div>
-
-          <h2
-            className="text-[32px] font-bold text-[#111827] leading-tight mb-2"
-            style={{ fontFamily: "'Space Grotesk', sans-serif" }}
-          >
-            Welcome back
-          </h2>
-          <p className="text-[#9ca3af] text-[15px] mb-10">
-            Select your role to continue to Apollo OPD
-          </p>
-
-          {/* Role buttons */}
-          <div className="space-y-3 mb-10">
-            <Link
-              to="/patient/home"
-              className="w-full flex items-center gap-4 bg-[#1b504c] hover:bg-[#133b38] text-white px-6 py-4 rounded-2xl transition-all duration-200 cursor-pointer group"
-              style={{ boxShadow: '0 8px 24px rgba(27,80,76,0.25)' }}
-            >
-              <div className="w-10 h-10 rounded-xl bg-white/15 flex items-center justify-center flex-shrink-0">
-                <svg width="20" height="20" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="1.8">
-                  <path strokeLinecap="round" strokeLinejoin="round" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zm-4 7a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
-                </svg>
-              </div>
-              <div className="flex-1 text-left">
-                <p className="text-[15px] font-semibold">I'm a Patient</p>
-                <p className="text-white/60 text-[12px] mt-0.5">Book appointments, view records</p>
-              </div>
-              <ArrowRight size={18} className="text-white/50 group-hover:text-white group-hover:translate-x-0.5 transition-all" />
-            </Link>
-
-            <Link
-              to="/staff/login"
-              className="w-full flex items-center gap-4 bg-white border-2 border-[#f3f4f6] hover:border-[#1b504c] text-[#374151] hover:text-[#1b504c] px-6 py-4 rounded-2xl transition-all duration-200 cursor-pointer group"
-            >
-              <div className="w-10 h-10 rounded-xl bg-[#f9fafb] group-hover:bg-[#e5f9f8] flex items-center justify-center flex-shrink-0 transition-colors">
-                <svg width="20" height="20" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="1.8" className="text-[#6b7280] group-hover:text-[#1b504c] transition-colors">
-                  <path strokeLinecap="round" strokeLinejoin="round" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-2 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
-                </svg>
-              </div>
-              <div className="flex-1 text-left">
-                <p className="text-[15px] font-semibold">Hospital Staff</p>
-                <p className="text-[#9ca3af] text-[12px] mt-0.5">Manage appointments, view analytics</p>
-              </div>
-              <ArrowRight size={18} className="text-[#d1d5db] group-hover:text-[#1b504c] group-hover:translate-x-0.5 transition-all" />
-            </Link>
-          </div>
-
-          {/* Divider */}
-          <div className="flex items-center gap-4 mb-8">
-            <div className="flex-1 h-px bg-[#f3f4f6]" />
-            <span className="text-[12px] text-[#d1d5db] font-medium">FEATURES</span>
-            <div className="flex-1 h-px bg-[#f3f4f6]" />
-          </div>
-
-          {/* Feature list */}
-          <div className="grid grid-cols-2 gap-3">
-            {[
-              { icon: '🤖', title: 'AI Scheduling', sub: 'Smart slot suggestions' },
-              { icon: '📲', title: 'WhatsApp alerts', sub: 'Personalised reminders' },
-              { icon: '📊', title: 'Live analytics', sub: 'Staff dashboard' },
-              { icon: '🔄', title: 'Slot recovery', sub: 'Fill cancellations fast' },
-            ].map(f => (
-              <div key={f.title} className="flex items-start gap-3 p-3.5 bg-[#f9fafb] rounded-xl">
-                <span className="text-[18px] leading-none mt-0.5">{f.icon}</span>
+                <div className="absolute inset-0 bg-gradient-to-br from-[#00d4aa]/0 via-[#00d4aa]/0 to-[#00d4aa]/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none" />
                 <div>
-                  <p className="text-[13px] font-semibold text-[#111827]">{f.title}</p>
-                  <p className="text-[11px] text-[#9ca3af] mt-0.5">{f.sub}</p>
+                  <p className="text-[10px] text-zinc-500 font-bold tracking-wide uppercase mb-1">{s.label}</p>
+                  <h3 className="text-2xl md:text-3xl font-extrabold text-white tracking-tight" style={{ fontFamily: "'Space Grotesk', sans-serif" }}>
+                    {s.value}
+                  </h3>
+                </div>
+                <div className="mt-3.5 flex items-center gap-1 text-[10px] text-[#6EE7B7] font-bold">
+                  <TrendingUp size={11} />
+                  <span>{s.trend}</span>
                 </div>
               </div>
             ))}
-          </div>
+          </motion.div>
         </div>
 
-        {/* Footer */}
-        <div className="px-10 xl:px-14 pb-8 flex items-center justify-between">
-          <p className="text-[12px] text-[#d1d5db]">Apollo OPD Intelligence · Demo Day 2026</p>
-          <div className="flex items-center gap-1.5">
-            <div className="w-1.5 h-1.5 rounded-full bg-green-400" />
-            <span className="text-[12px] text-[#9ca3af]">Live demo</span>
+        {/* Right Column - Floating Cards & Glass Login */}
+        <div className="lg:col-span-5 relative flex items-center justify-center min-h-[500px]">
+          
+          {/* Floating Widget 1: WhatsApp Alert */}
+          <div className="absolute -top-6 -right-6 w-72 glass-card-dark p-4 rounded-2xl shadow-2xl animate-float-slow z-20 border border-emerald-500/20 backdrop-blur-xl hidden xl:block">
+            <div className="flex items-center justify-between mb-2">
+              <div className="flex items-center gap-2">
+                <div className="w-6 h-6 rounded-lg bg-emerald-500/20 flex items-center justify-center text-emerald-400">
+                  <MessageSquare size={12} />
+                </div>
+                <span className="text-[11px] font-bold text-emerald-400">WhatsApp Alert</span>
+              </div>
+              <span className="text-[9px] text-zinc-500 font-medium">Sent · Just now</span>
+            </div>
+            <p className="text-[11px] text-zinc-300 leading-snug">
+              "Hello Sarah, your appointment with <strong className="text-white font-medium">Dr. Amit Verma</strong> is confirmed for tomorrow at 10:30 AM."
+            </p>
+            <div className="mt-2.5 flex gap-1.5">
+              <span className="text-[9px] bg-emerald-950/60 border border-emerald-800/40 text-emerald-400 px-2 py-0.5 rounded-full font-semibold">1: Confirm</span>
+              <span className="text-[9px] bg-zinc-900 border border-zinc-800 text-zinc-400 px-2 py-0.5 rounded-full font-semibold">2: Reschedule</span>
+            </div>
           </div>
+
+          {/* Floating Widget 2: AI Risk */}
+          <div className="absolute bottom-16 -left-16 w-52 glass-card-dark p-4 rounded-2xl shadow-2xl animate-float-medium z-20 border border-[#00d4aa]/10 backdrop-blur-xl hidden xl:block">
+            <div className="flex items-center justify-between mb-2">
+              <span className="text-[10px] font-bold text-zinc-400">AI Risk Assessment</span>
+              <div className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
+            </div>
+            <div className="flex items-baseline gap-1.5">
+              <span className="text-2xl font-bold tracking-tight text-white">4.2%</span>
+              <span className="text-[9px] text-[#6EE7B7] font-bold flex items-center">↓ 12.8% No-shows</span>
+            </div>
+            <p className="text-[9px] text-zinc-500 mt-1 font-medium">OPD prediction index</p>
+            {/* Simple mock micro bar chart */}
+            <div className="mt-3.5 flex gap-1 items-end h-6">
+              <div className="w-full h-[40%] bg-zinc-800 rounded-sm" />
+              <div className="w-full h-[70%] bg-zinc-800 rounded-sm" />
+              <div className="w-full h-[85%] bg-zinc-800 rounded-sm" />
+              <div className="w-full h-[30%] bg-emerald-500/80 rounded-sm animate-pulse" />
+            </div>
+          </div>
+
+          {/* Floating Widget 3: Slot Recovery */}
+          <div className="absolute -bottom-8 -right-4 w-60 glass-card-dark p-4 rounded-2xl shadow-2xl animate-float-fast z-20 border border-emerald-500/20 backdrop-blur-xl hidden xl:block">
+            <div className="flex items-center gap-2 mb-2">
+              <div className="w-5 h-5 rounded bg-emerald-500/20 flex items-center justify-center text-emerald-400">
+                <Clock size={11} />
+              </div>
+              <span className="text-[10px] font-bold text-white">Smart Recovery</span>
+            </div>
+            <p className="text-[10px] text-zinc-400 leading-snug">
+              Slot at <span className="text-[#6EE7B7] font-semibold">2:30 PM</span> cancelled. Replaced with waitlist patient <span className="text-white font-semibold">A. Sharma</span> in <span className="text-[#00D4AA] font-bold">2.4 mins</span>.
+            </p>
+          </div>
+
+          {/* Central Glass Login Panel */}
+          <motion.div
+            initial={{ opacity: 0, scale: 0.95 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.6, delay: 0.2 }}
+            className="w-full max-w-[430px] glass-panel p-8 md:p-10 rounded-[32px] border border-white/10 shadow-[0_32px_64px_rgba(0,0,0,0.6)] flex flex-col relative z-30 overflow-hidden"
+          >
+            {/* Glowing top line */}
+            <div className="absolute top-0 left-1/2 -translate-x-1/2 w-1/2 h-[2px] bg-gradient-to-r from-transparent via-[#00D4AA]/80 to-transparent" />
+            
+            <div className="flex items-center gap-3.5 mb-8">
+              <div className="w-12 h-12 rounded-2xl bg-gradient-to-br from-[#0F766E] to-[#00D4AA] p-[1.2px] shadow-[0_8px_20px_rgba(0,212,170,0.25)] flex items-center justify-center flex-shrink-0">
+                <div className="w-full h-full rounded-[15px] bg-[#030c0a] flex items-center justify-center">
+                  <span className="text-white font-extrabold text-lg" style={{ fontFamily: "'Space Grotesk', sans-serif" }}>A</span>
+                </div>
+              </div>
+              <div>
+                <h3 className="text-white font-bold text-base leading-tight" style={{ fontFamily: "'Space Grotesk', sans-serif" }}>Apollo OPD</h3>
+                <span className="text-emerald-400/80 text-[10px] font-bold tracking-wider uppercase">Portal Access</span>
+              </div>
+            </div>
+
+            <h2 
+              className="text-2xl font-bold text-white mb-2 leading-snug"
+              style={{ fontFamily: "'Space Grotesk', sans-serif" }}
+            >
+              Welcome back
+            </h2>
+            <p className="text-zinc-400 text-[13px] mb-8 leading-relaxed">
+              Select your role to securely access the OPD intelligence platform.
+            </p>
+
+            {/* Role buttons */}
+            <div className="space-y-3.5 mb-8">
+              <Link
+                to="/patient/home"
+                className="w-full flex items-center gap-4 bg-gradient-to-r from-[#0F766E] to-[#0d5f59] hover:from-[#118c82] hover:to-[#0f766e] text-white px-5 py-4 rounded-2xl transition-all duration-300 cursor-pointer group shadow-[0_4px_20px_rgba(15,118,110,0.25)] hover:shadow-[0_4px_24px_rgba(15,118,110,0.4)] hover:-translate-y-0.5 border border-white/5"
+              >
+                <div className="w-10 h-10 rounded-xl bg-white/10 flex items-center justify-center flex-shrink-0 group-hover:bg-white/15 transition-colors">
+                  <Users size={18} className="text-[#6EE7B7]" />
+                </div>
+                <div className="flex-1 text-left">
+                  <p className="text-[14px] font-bold tracking-tight">I'm a Patient</p>
+                  <p className="text-white/60 text-[11px] mt-0.5">Book slots, check-in, view records</p>
+                </div>
+                <ChevronRight size={18} className="text-white/40 group-hover:text-white group-hover:translate-x-1 transition-all" />
+              </Link>
+
+              <Link
+                to="/staff/login"
+                className="w-full flex items-center gap-4 bg-zinc-950/45 hover:bg-zinc-900/60 border border-white/10 hover:border-emerald-500/35 text-[#e4e4e7] px-5 py-4 rounded-2xl transition-all duration-300 cursor-pointer group hover:-translate-y-0.5"
+              >
+                <div className="w-10 h-10 rounded-xl bg-white/5 group-hover:bg-emerald-500/10 flex items-center justify-center flex-shrink-0 transition-colors">
+                  <Activity size={18} className="text-[#00D4AA] group-hover:scale-110 transition-transform" />
+                </div>
+                <div className="flex-1 text-left">
+                  <p className="text-[14px] font-bold tracking-tight">Hospital Staff</p>
+                  <p className="text-zinc-500 group-hover:text-zinc-400 text-[11px] mt-0.5 transition-colors">OPD dashboard & smart recovery</p>
+                </div>
+                <ChevronRight size={18} className="text-zinc-500 group-hover:text-[#00D4AA] group-hover:translate-x-1 transition-all" />
+              </Link>
+            </div>
+
+            {/* Features Divider */}
+            <div className="flex items-center gap-3 mb-6">
+              <div className="flex-1 h-[1px] bg-white/5" />
+              <span className="text-[10px] text-zinc-500 font-bold tracking-widest uppercase">Intelligence Suite</span>
+              <div className="flex-1 h-[1px] bg-white/5" />
+            </div>
+
+            {/* Feature Grid */}
+            <div className="grid grid-cols-2 gap-3">
+              {LOGIN_FEATURES.map((f, idx) => {
+                const Icon = f.icon;
+                return (
+                  <div 
+                    key={f.title} 
+                    className="flex items-start gap-2.5 p-3 rounded-xl bg-white/[0.015] border border-white/[0.03] hover:bg-white/[0.04] hover:border-white/[0.07] transition-all group"
+                  >
+                    <div className={`mt-0.5 p-1 rounded bg-white/[0.02] group-hover:bg-white/[0.06] ${f.color} transition-colors`}>
+                      <Icon size={13} />
+                    </div>
+                    <div>
+                      <p className="text-[12px] font-bold text-white leading-tight">{f.title}</p>
+                      <p className="text-[10px] text-zinc-500 mt-1 leading-snug">{f.sub}</p>
+                    </div>
+                  </div>
+                );
+              })}
+            </div>
+
+          </motion.div>
         </div>
-      </div>
+
+      </main>
+
+      {/* Footer */}
+      <footer className="relative z-20 w-full max-w-7xl mx-auto px-6 py-8 flex flex-col md:flex-row items-center justify-between border-t border-white/5 mt-auto text-[11px] text-zinc-600 gap-4">
+        <p>Apollo OPD Intelligence · Demo Day 2026</p>
+        <div className="flex items-center gap-4">
+          <div className="flex items-center gap-1.5">
+            <span className="relative flex h-2 w-2">
+              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+              <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
+            </span>
+            <span className="text-zinc-500">Live Demo</span>
+          </div>
+          <span className="hidden md:inline">·</span>
+          <span>Jubilee Hills, Hyderabad</span>
+        </div>
+      </footer>
     </div>
   );
 }
