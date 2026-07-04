@@ -422,70 +422,71 @@ h1, h2, h3, h4, h5, h6 {
   animation: pulse-slow 8s ease-in-out infinite;
 }
 
-.glass-panel {
-  background: rgba(6, 21, 19, 0.45);
+.glass-panel-light {
+  background: rgba(255, 255, 255, 0.7);
   backdrop-filter: blur(24px);
   -webkit-backdrop-filter: blur(24px);
-  border: 1px solid rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(27, 80, 76, 0.08);
   box-shadow: 
-    0 24px 60px rgba(0, 0, 0, 0.5),
-    inset 0 1px 1px rgba(255, 255, 255, 0.12);
+    0 24px 60px rgba(27, 80, 76, 0.08),
+    inset 0 1px 1px rgba(255, 255, 255, 0.6);
 }
 
-.glass-card-dark {
-  background: rgba(15, 45, 41, 0.3);
+.glass-card-light {
+  background: rgba(255, 255, 255, 0.65);
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
-  border: 1px solid rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(27, 80, 76, 0.06);
   box-shadow: 
-    0 8px 32px 0 rgba(0, 0, 0, 0.25),
-    inset 0 1px 0px rgba(255, 255, 255, 0.08);
+    0 8px 32px 0 rgba(27, 80, 76, 0.03),
+    inset 0 1px 0px rgba(255, 255, 255, 0.8);
   transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-.glass-card-dark:hover {
-  border-color: rgba(0, 212, 170, 0.35);
+.glass-card-light:hover {
+  border-color: rgba(27, 80, 76, 0.15);
   box-shadow: 
-    0 16px 40px 0 rgba(0, 212, 170, 0.12),
-    inset 0 1px 0px rgba(255, 255, 255, 0.15);
+    0 16px 40px 0 rgba(27, 80, 76, 0.06),
+    inset 0 1px 0px rgba(255, 255, 255, 0.95);
   transform: translateY(-4px);
 }
 
-.text-gradient {
-  background: linear-gradient(135deg, #ffffff 30%, #a7f3d0 70%, #00d4aa 100%);
+.text-gradient-teal {
+  background: linear-gradient(135deg, #1b504c 30%, #0f766e 70%, #00a884 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
 }
 
-/* Custom glow effect */
-.glow-spot-teal {
+/* Light theme glow effects */
+.glow-spot-light-teal {
   position: absolute;
   width: 500px;
   height: 500px;
   border-radius: 50%;
-  background: radial-gradient(circle, rgba(0, 212, 170, 0.12) 0%, rgba(15, 118, 110, 0.05) 50%, transparent 100%);
+  background: radial-gradient(circle, rgba(0, 212, 170, 0.08) 0%, rgba(27, 80, 76, 0.02) 55%, transparent 100%);
   filter: blur(60px);
   pointer-events: none;
 }
 
-.glow-spot-emerald {
+.glow-spot-light-emerald {
   position: absolute;
   width: 600px;
   height: 600px;
   border-radius: 50%;
-  background: radial-gradient(circle, rgba(110, 231, 183, 0.08) 0%, rgba(27, 80, 76, 0.04) 50%, transparent 100%);
+  background: radial-gradient(circle, rgba(110, 231, 183, 0.06) 0%, rgba(27, 80, 76, 0.01) 55%, transparent 100%);
   filter: blur(80px);
   pointer-events: none;
 }
 
-/* Force headings inside landing-page-container to use white color */
+/* Ensure landing page headings default to the primary dark text color */
 .landing-page-container h1,
 .landing-page-container h2,
 .landing-page-container h3,
 .landing-page-container h4 {
-  color: #ffffff !important;
+  color: var(--text-primary);
 }
+
 
 
 
